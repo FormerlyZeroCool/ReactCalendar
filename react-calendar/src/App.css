@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.list {
+  list-style-type: none
+}
+.calendar-header {
+  display: flex;
+  grid-auto-flow: row;
+}
+.event-list {
+  display: flex;
+  flex-direction: column;
+}
+.grid-container {
+  display: grid
+}
+.arrow {
+  background-color: transparent;
+  border: solid black;
+  border-width: 0 3vmin 3vmin 0;
+  display: inline-block;
+  padding: 3vmin;
+
+  border-radius: 1vmin;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.event {
+  font-size: calc(10px + 1vmin);
+}
+.day {
+  font-size: calc(10px + 1.5vmin);
+}
