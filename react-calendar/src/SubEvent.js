@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 
 /*
 interface props {
@@ -10,7 +10,6 @@ interface props {
 
 export default function SubEvent(props)
 {
-    const [checked, setChecked] = useState()
     return (
         <div className={props.visible ? "sub-event" : "hidden"}>
             {props.description}

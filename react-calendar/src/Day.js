@@ -12,6 +12,7 @@ interface props {
     date:Date;
     events:Event[];
     gray_out:boolean;
+    large_day:boolean;
 }
 */
 let event_guid = 0;
@@ -21,7 +22,7 @@ export default function Day(props)
         return <Event show_sub_events={false} description={event.description} sub_events={event.sub_events} key={event_guid++}/>
     });
     return (
-        <div className="day">
+        <div className={props.large_day ? "large-day" : "day"}>
         <h3 style={props.gray_out ? {color:"gray"}:{}}>{props.day_of_month}</h3> 
         <div className="event-list">
             {events}

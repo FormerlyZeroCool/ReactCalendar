@@ -1,13 +1,13 @@
 export const events = [
     {
-      description:"Walk dog",
+      description:"Walk dog to the place",
       sub_events: [
         "Put on leash",
         "Open door",
         "Walk",
         "Pickup Poo"
       ],
-      time: Date.now() + (24 * 60 * 60 * 1000)
+      time: Date.now() + (60 * 60 * 1000)
     },
     {
       description:"Walk cat",
@@ -17,7 +17,7 @@ export const events = [
         "Walk",
         "Pickup Sandy Poo"
       ],
-      time: Date.now() + (25 * 60 * 60 * 1000)
+      time: Date.now() + (2 * 60 * 60 * 1000)
     },
     {
       description:"Walk dog",
@@ -82,18 +82,7 @@ export function now()
     return new Date(Date.now());
 }
 
-export function days_events(events, today, starting_index = 0)
+export function days_in_month(year, month) 
 {
-    today = new Date(today);
-    today.setHours(0, 0, 0, 0);
-    const start_day = today;
-    const end_day = new Date(today);
-    end_day.setHours(23, 59, 59);
-    const current_day_events = [];
-    //merge events with days
-    while(events.length > starting_index && between_time(new Date(events[starting_index].time), start_day, end_day))
-    {
-      current_day_events.push(events[starting_index++]);
-    }
-    return [current_day_events, starting_index];
-}
+    return new Date(year, month, 0).getDate();
+} 

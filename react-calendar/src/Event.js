@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import SubEvent from "./SubEvent";
 
 /*
@@ -30,7 +30,7 @@ export default function Event(props)
             {collapse_arrow}
             <span className="small-spacer"></span>
             {props.description}
-            <div className="sub-event">{sub_events}</div>
+            <div className="sub-event-container">{sub_events}</div>
         </div>
     );
 }
