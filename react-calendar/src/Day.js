@@ -11,6 +11,7 @@ interface Event {
 interface props {
     date:Date;
     events:Event[];
+    gray_out:boolean;
 }
 */
 let event_guid = 0;
@@ -21,7 +22,7 @@ export default function Day(props)
     });
     return (
         <div className="day">
-        <h3>{props.day_of_month}</h3> 
+        <h3 style={props.gray_out ? {color:"gray"}:{}}>{props.day_of_month}</h3> 
         <div className="event-list">
             {events}
         </div>

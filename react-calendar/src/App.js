@@ -25,11 +25,13 @@ function App() {
   const [date, setDate] = useState(now());
   const first_of_month = get_first_of_month_time(date);
   const first_of_week = get_first_of_week_time(date);
+  const first_of_first_week = get_first_of_week_time(first_of_month);
   //const days = new Array(viewType.total_days).fill(0, 0, viewType.total_days).map((val, i) => i + week * 7);
   const days_container = [];
   let event_index = 0;
   let weekends_offset = 0;
-  const current_render_day = new Date(viewType.total_days > now().getDate() ? first_of_month : viewType.total_days > 1 ? first_of_week : now());
+  const current_render_day = new Date(viewType.total_days > now().getDate() ? first_of_first_week : viewType.total_days > 1 ? first_of_week : now());
+  
   for(let row = 0; row < viewType.total_days / viewType.per_row_days; row++)
   {
     let days_in_row = [];
@@ -47,14 +49,14 @@ function App() {
         current_day_events.push(events[event_index++]);
       }
       //finished mapping creating day
-      days_in_row.push(<Day key={day_id++} events={current_day_events} day_of_month={current_render_day.getDate()}/>);
+      days_in_row.push(<Day key={day_id++} gray_out={current_render_day.getMonth() !== date.getMonth()} events={current_day_events} day_of_month={current_render_day.getDate()}/>);
       current_render_day.setDate(current_render_day.getDate() + 1);
       while(!viewType.render_weekend && (current_render_day.getDay() === 6 || current_render_day.getDay() === 0))
       {
         current_render_day.setDate(current_render_day.getDate() + 1);
       }
     }
-    days_container.push(<GridRow days={days_in_row} key={grid_row_id++}/>);
+    days_container.push(<GridRow objects={days_in_row} key={grid_row_id++}/>);
   }
 
   return (
