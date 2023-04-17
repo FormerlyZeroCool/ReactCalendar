@@ -58,6 +58,7 @@ class ViewType {
         this.total_days = 1;
       break;
     }
+    return this;
   }
 };
 let grid_row_id = 0;
@@ -68,7 +69,7 @@ function App() {
   const first_of_month = get_first_of_month_time(date);
   const first_of_week = get_first_of_week_time(date);
   const first_of_first_week = get_first_of_week_time(first_of_month);
-  viewType.set_render_type(ViewType.day, date);
+  viewType.set_render_type(ViewType.month, date);
   //const days = new Array(viewType.total_days).fill(0, 0, viewType.total_days).map((val, i) => i + week * 7);
   const days_container = [];
   let event_index = 0;
@@ -80,10 +81,11 @@ function App() {
     for(let i = 0; i < viewType.per_row_days && row * viewType.per_row_days + i < viewType.total_days; i++)
     {
       //to map events to days like merging two sorted arrays in merge sort
+      //as a result events must be sorted in ascending order relative to the time they take place
       current_render_day.setHours(0, 0, 0, 0);
       const start_day = current_render_day;
       const end_day = new Date(current_render_day);
-      end_day.setHours(23, 59, 59);
+      end_day.setDate(end_day.getDate() + 1);//make end date start of next day
       const current_day_events = [];
       //merge events with days
       while(events.length > event_index && events[event_index].time < end_day.getTime())
