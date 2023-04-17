@@ -21,12 +21,12 @@ export default function Event(props)
     if(sub_events.length > 0)
     {
         if(showing)
-            collapse_arrow = <div className="small-arrow down"></div>;
+            collapse_arrow = <div className="small-arrow down" onClick={() => setShowing(!showing)}></div>;
         else 
-            collapse_arrow = <div className="small-arrow right"></div>
+            collapse_arrow = <div className="small-arrow right" onClick={() => setShowing(!showing)}></div>;
     }
     return (
-        <div className="event" onClick={() => setShowing(!showing)}>
+        <div className="event" >
             {collapse_arrow}
             <span className="small-spacer"></span>
             {props.description}
