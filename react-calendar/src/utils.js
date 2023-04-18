@@ -86,3 +86,5 @@ export function days_in_month(year, month)
 {
     return new Date(year, month, 0).getDate();
 } 
+
+export const to_mon_start = (i) => i === 0 ? 6 : i - 1;

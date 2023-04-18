@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
-import {days_in_month, between_time, now, day_of_week_lookup, month_lookup, get_first_of_month_time, get_first_of_week_time, events} from './utils.js';
+import {days_in_month, between_time, now, to_mon_start, day_of_week_lookup, month_lookup, get_first_of_month_time, get_first_of_week_time, events} from './utils.js';
 import Day from './Day.js'
 import GridRow from "./GridRow";
 import Header from "./Header";
@@ -130,9 +130,8 @@ function App() {
     week_header.pop();
     week_header.pop();
   }
-  const to_mon_start = (i) => i === 0 ? 6 : i - 1;
   const week_header_formatted = <GridRow objects={viewType.state !== ViewType.day ? week_header : <Header description={day_of_week_lookup[to_mon_start(date.getDay())]} key={"a1127d" + grid_row_id++}/>} key={"a11z"+grid_row_id++}/>;
-  console.log(week_header_formatted)
+
   return (
     <div className="App">
       <header className="App-header">
