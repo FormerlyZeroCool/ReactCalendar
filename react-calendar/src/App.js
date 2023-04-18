@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import './App.css';
 import {days_in_month, between_time, now, day_of_week_lookup, month_lookup, get_first_of_month_time, get_first_of_week_time, events} from './utils.js';
 import Day from './Day.js'
-import GridRow from "./GridRow.js";
-import Header from "./Header.js";
+import GridRow from "./GridRow";
+import Header from "./Header";
 /*
 interface props {
     description:string
@@ -123,15 +123,15 @@ function App() {
 
   for(let i = 0; i < day_of_week_lookup.length; i++)
   {
-    console.log(day_of_week_lookup[i])
-    week_header.push(<Header description={day_of_week_lookup[i]} key={"a112d" + grid_row_id++}/>);
+    week_header.push(<Header description={day_of_week_lookup[i].substring(0, 3)} key={"a1127d" + grid_row_id++}/>);
   }
   if(!viewType.render_weekend)//remove sat, and sun header
   {
     week_header.pop();
     week_header.pop();
   }
-  const week_header_formatted = <GridRow object={week_header} key={"a11z"+grid_row_id++}/>;
+  const to_mon_start = (i) => i === 0 ? 6 : i - 1;
+  const week_header_formatted = <GridRow objects={viewType.state !== ViewType.day ? week_header : <Header description={day_of_week_lookup[to_mon_start(date.getDay())]} key={"a1127d" + grid_row_id++}/>} key={"a11z"+grid_row_id++}/>;
   console.log(week_header_formatted)
   return (
     <div className="App">
