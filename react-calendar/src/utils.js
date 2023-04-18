@@ -5,7 +5,7 @@ export const events = [
         "Put on leash",
         "Open door",
         "Walk",
-        "Pickup Poo"
+        "Cleanup after dog"
       ],
       time: Date.now() + (60 * 60 * 1000)
     },
@@ -15,19 +15,19 @@ export const events = [
         "Put on leash",
         "muzzle cat",
         "Walk",
-        "Pickup Sandy Poo"
+        "Cleanup after cat lorem ipsum"
       ],
       time: Date.now() + (2 * 60 * 60 * 1000)
     },
     {
-      description:"Walk demon",
+      description:"Walk plant",
       sub_events: [],
       time: Date.now() + (2 * 24 * 60 * 60 * 1000)
     },
     {
       description:"Walk fuzzy",
       sub_events: [],
-      time: Date.now() + (4 * 25 * 60 * 60 * 1000)
+      time: Date.now() + (3 * 25 * 60 * 60 * 1000)
     }
   ];
   events.sort((a, b) => {

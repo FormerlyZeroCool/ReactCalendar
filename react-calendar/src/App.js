@@ -22,9 +22,14 @@ class ViewType {
 
     //generic constants
     ViewType.max_days_in_week = 6;
+
+    //finish member variables with default values
+    this.state = ViewType.day;
+
   } 
   set_render_type(viewTypeDescriptor, date)
   {
+    this.state = viewTypeDescriptor;
     const first_of_week = get_first_of_week_time(get_first_of_month_time(date));
     switch(viewTypeDescriptor)
     {
@@ -58,18 +63,23 @@ class ViewType {
         this.total_days = 1;
       break;
     }
-    return this;
+    return this.clone();
+  }
+  clone()
+  {
+    const clone = new ViewType(this.total_days, this.per_row_days, this.render_weekend);
+    clone.state = this.state;
+    return clone;
   }
 };
 let grid_row_id = 0;
 let day_id = 0;
 function App() {
-  const [viewType, setViewType] = useState(new ViewType(1, 5, false));
+  const [viewType, setViewType] = useState(new ViewType(1, 1, false));
   const [date, setDate] = useState(now());
   const first_of_month = get_first_of_month_time(date);
   const first_of_week = get_first_of_week_time(date);
   const first_of_first_week = get_first_of_week_time(first_of_month);
-  viewType.set_render_type(ViewType.month, date);
   //const days = new Array(viewType.total_days).fill(0, 0, viewType.total_days).map((val, i) => i + week * 7);
   const days_container = [];
   let event_index = 0;
@@ -128,6 +138,19 @@ function App() {
                 >
                 <li>{date.getFullYear()}</li>
                 <li>{month_lookup[date.getMonth()]}</li>
+                <li>
+                  <button className={viewType.state === ViewType.month ?"selected-main-button":"main-button"}
+                    onClick={() => {setViewType(viewType.set_render_type(ViewType.month, date)); console.log("hi")}}>
+                    Month</button>
+                  <div className="small-spacer"></div>
+                  <button className={viewType.state === ViewType.week ?"selected-main-button":"main-button"}
+                    onClick={() => setViewType(viewType.set_render_type(ViewType.week, date))}>
+                      Week</button>
+                  <div className="small-spacer"></div>
+                  <button className={viewType.state === ViewType.day ?"selected-main-button":"main-button"}
+                    onClick={() => setViewType(viewType.set_render_type(ViewType.day, date))}
+                    >Day</button>
+                </li>
               </div>
               <button className="arrow right" onClick={() => {
                   if(viewType.total_days > 7)
