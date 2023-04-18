@@ -27,7 +27,7 @@ export const events = [
     {
       description:"Walk fuzzy",
       sub_events: [],
-      time: Date.now() + (3 * 25 * 60 * 60 * 1000)
+      time: Date.now() + (4 * 25 * 60 * 60 * 1000)
     }
   ];
   events.sort((a, b) => {

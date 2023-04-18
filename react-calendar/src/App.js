@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './App.css';
-import {days_in_month, between_time, now, month_lookup, get_first_of_month_time, get_first_of_week_time, events} from './utils.js';
+import {days_in_month, between_time, now, day_of_week_lookup, month_lookup, get_first_of_month_time, get_first_of_week_time, events} from './utils.js';
 import Day from './Day.js'
-import GridRow from "./GridRow";
+import GridRow from "./GridRow.js";
+import Header from "./Header.js";
 /*
 interface props {
     description:string
@@ -116,7 +117,19 @@ function App() {
     }
     days_container.push(<GridRow objects={days_in_row} key={grid_row_id++}/>);
   }
+  const week_header = [];
 
+  for(let i = 0; i < day_of_week_lookup.length; i++)
+  {
+    console.log(day_of_week_lookup[i])
+    week_header.push(<Header description={day_of_week_lookup[i]} key={"a112d" + grid_row_id++}/>);
+  }
+  if(!viewType.render_weekend)//remove sat, and sun header
+  {
+    week_header.pop();
+    week_header.pop();
+  }
+  const week_header_formatted = <GridRow object={week_header} key={"a11z"+grid_row_id++}/>;
   return (
     <div className="App">
       <header className="App-header">
@@ -159,7 +172,7 @@ function App() {
                 >
                 <li>
                   <button className={viewType.state === ViewType.month ?"selected-main-button":"main-button"}
-                    onClick={() => {setViewType(viewType.set_render_type(ViewType.month, date)); console.log("hi")}}>
+                    onClick={() => setViewType(viewType.set_render_type(ViewType.month, date))}>
                     Month</button>
                   <div className="small-spacer"></div>
                   <button className={viewType.state === ViewType.week ?"selected-main-button":"main-button"}
@@ -172,13 +185,16 @@ function App() {
                 </li>
                 <li>
 
-                <button className={viewType.render_weekend ?"selected-main-button":"main-button"}
+                <button className={viewType.render_weekend ? "selected-main-button":"main-button"}
                     style={{display: viewType.state === ViewType.day ? "none":"inline"}}
-                    onClick={() => {setViewType(viewType.set_render_type(viewType.state, date, !viewType.render_weekend)); console.log("hi")}}>
-                    Show Weekends</button>
+                    onClick={() => setViewType(viewType.set_render_type(viewType.state, date, !viewType.render_weekend))}>
+                    Weekends</button>
               </li>
             </div>
         </ul>
+                <div className="grid-container">
+                  {week_header_formatted}
+                </div>
                 <div className="grid-container">
                   {days_container}
                 </div>
