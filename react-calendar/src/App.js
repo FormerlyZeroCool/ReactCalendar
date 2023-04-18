@@ -35,6 +35,7 @@ class ViewType {
     const first_of_week = get_first_of_week_time(get_first_of_month_time(date));
     switch(viewTypeDescriptor)
     {
+      
       case(ViewType.month):
       const days = days_in_month(date.getFullYear(), date.getMonth()) + (ViewType.max_days_in_week - first_of_week.getDay());
       if(this.render_weekend)
@@ -60,6 +61,7 @@ class ViewType {
         this.total_days = 5;
       }
       break;
+      default:
       case(ViewType.day):
         this.per_row_days = 1;
         this.total_days = 1;
@@ -130,6 +132,7 @@ function App() {
     week_header.pop();
   }
   const week_header_formatted = <GridRow object={week_header} key={"a11z"+grid_row_id++}/>;
+  console.log(week_header_formatted)
   return (
     <div className="App">
       <header className="App-header">
