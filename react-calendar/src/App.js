@@ -173,6 +173,7 @@ function App() {
                 <li>
 
                 <button className={viewType.render_weekend ?"selected-main-button":"main-button"}
+                    style={{display: viewType.state === ViewType.day ? "none":"inline"}}
                     onClick={() => {setViewType(viewType.set_render_type(viewType.state, date, !viewType.render_weekend)); console.log("hi")}}>
                     Show Weekends</button>
               </li>
